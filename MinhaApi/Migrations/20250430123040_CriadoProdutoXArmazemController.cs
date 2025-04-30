@@ -19,9 +19,9 @@ namespace MinhaApi.Migrations
                 oldType: "decimal(18,2)");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProdutoXArmazens_IdArmazem",
+                name: "IX_ProdutoXArmazens_ArmazemUniqueId",
                 table: "ProdutoXArmazens",
-                column: "IdArmazem");
+                column: "ArmazemUniqueId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProdutoXArmazens_IdProduto",
@@ -29,9 +29,9 @@ namespace MinhaApi.Migrations
                 column: "IdProduto");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_ProdutoXArmazens_Armazens_IdArmazem",
+                name: "FK_ProdutoXArmazens_Armazens_ArmazemUniqueId",
                 table: "ProdutoXArmazens",
-                column: "IdArmazem",
+                column: "ArmazemUniqueId",
                 principalTable: "Armazens",
                 principalColumn: "UniqueId",
                 onDelete: ReferentialAction.Cascade);
@@ -49,7 +49,7 @@ namespace MinhaApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_ProdutoXArmazens_Armazens_IdArmazem",
+                name: "FK_ProdutoXArmazens_Armazens_ArmazemUniqueId",
                 table: "ProdutoXArmazens");
 
             migrationBuilder.DropForeignKey(
@@ -57,7 +57,7 @@ namespace MinhaApi.Migrations
                 table: "ProdutoXArmazens");
 
             migrationBuilder.DropIndex(
-                name: "IX_ProdutoXArmazens_IdArmazem",
+                name: "IX_ProdutoXArmazens_ArmazemUniqueId",
                 table: "ProdutoXArmazens");
 
             migrationBuilder.DropIndex(

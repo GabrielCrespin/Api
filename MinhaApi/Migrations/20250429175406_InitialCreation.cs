@@ -46,7 +46,7 @@ namespace MinhaApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdProduto = table.Column<int>(type: "int", nullable: false),
-                    IdArmazem = table.Column<int>(type: "int", nullable: false),
+                    ArmazemUniqueId = table.Column<int>(type: "int", nullable: false),
                     Saldo = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

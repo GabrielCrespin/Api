@@ -5,6 +5,7 @@ C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.csproj.CoreCompileInputs.cache
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.sourcelink.json
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\bin\Debug\net9.0\appsettings.json
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\bin\Debug\net9.0\MinhaApi.staticwebassets.endpoints.json
@@ -164,4 +165,3 @@ C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.pdb
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.genruntimeconfig.cache
 C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\ref\MinhaApi.dll
-C:\Users\gabri\OneDrive\Área de Trabalho\API Simples\MinhaApi\obj\Debug\net9.0\MinhaApi.sourcelink.json

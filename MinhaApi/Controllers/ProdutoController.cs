@@ -1,7 +1,6 @@
 using GerenciamentoEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using GerenciamentoEstoque.Data;
 
 namespace GerenciamentoEstoque.Controllers
@@ -30,7 +29,7 @@ namespace GerenciamentoEstoque.Controllers
             var produto = await _context.Produtos.FindAsync(id);
             if (produto == null)
             {
-                NotFound();
+                return NotFound();
             }
             return produto;
         }

@@ -78,7 +78,7 @@ namespace MinhaApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("IdArmazem")
+                    b.Property<int>("ArmazemUniqueId")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProduto")

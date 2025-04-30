@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MinhaApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250429175406_InitialCreation")]
-    partial class InitialCreation
+    [Migration("20250430191509_NovaMigracao")]
+    partial class NovaMigracao
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace MinhaApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Descicao")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -84,12 +84,45 @@ namespace MinhaApi.Migrations
                     b.Property<int>("IdProduto")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Saldo")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Saldo")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ArmazemUniqueId");
+
+                    b.HasIndex("IdProduto");
+
                     b.ToTable("ProdutoXArmazens");
+                });
+
+            modelBuilder.Entity("GerenciamentoEstoque.Models.ProdutoXArmazem", b =>
+                {
+                    b.HasOne("GerenciamentoEstoque.Models.Armazem", "Armazem")
+                        .WithMany("ProdutosXArmazens")
+                        .HasForeignKey("ArmazemUniqueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GerenciamentoEstoque.Models.Produto", "Produto")
+                        .WithMany("ProdutosXArmazens")
+                        .HasForeignKey("IdProduto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Armazem");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("GerenciamentoEstoque.Models.Armazem", b =>
+                {
+                    b.Navigation("ProdutosXArmazens");
+                });
+
+            modelBuilder.Entity("GerenciamentoEstoque.Models.Produto", b =>
+                {
+                    b.Navigation("ProdutosXArmazens");
                 });
 #pragma warning restore 612, 618
         }

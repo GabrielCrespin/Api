@@ -78,7 +78,7 @@ namespace MinhaApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("IdArmazem")
+                    b.Property<int>("ArmazemUniqueId")
                         .HasColumnType("int");
 
                     b.Property<int>("IdProduto")
@@ -89,7 +89,7 @@ namespace MinhaApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdArmazem");
+                    b.HasIndex("ArmazemUniqueId");
 
                     b.HasIndex("IdProduto");
 
@@ -100,7 +100,7 @@ namespace MinhaApi.Migrations
                 {
                     b.HasOne("GerenciamentoEstoque.Models.Armazem", "Armazem")
                         .WithMany("ProdutosXArmazens")
-                        .HasForeignKey("IdArmazem")
+                        .HasForeignKey("ArmazemUniqueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
