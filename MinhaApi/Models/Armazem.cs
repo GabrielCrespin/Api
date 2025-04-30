@@ -6,7 +6,9 @@ namespace GerenciamentoEstoque.Models
     {
         [Key]
         public int UniqueId { get; set; }
+        [Required]
         public string Codigo { get; set; }
+        [Required]
         public string Descricao { get; set; }
 
         public ICollection<ProdutoXArmazem> ProdutosXArmazens { get; set; }
