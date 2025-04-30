@@ -5,7 +5,7 @@ namespace GerenciamentoEstoque.Models
         public int Id { get; set; }
         public int IdProduto { get; set; }
         public Produto Produto { get; set; }
-        public int IdArmazem { get; set; }
+        public int ArmazemUniqueId { get; set; }
         public Armazem Armazem { get; set; }
         public int Saldo { get; set; }
     }

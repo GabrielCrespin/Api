@@ -20,7 +20,7 @@ namespace GerenciamentoEstoque.Controllers
         public async Task<ActionResult> GetProdutoXArmazens(int armazemId)
         {
             var produtoXArmazem = await _context.ProdutoXArmazens
-            .Where(pxa => pxa.IdArmazem == armazemId)
+            .Where(pxa => pxa.ArmazemUniqueId == armazemId)
             .Include(pxa => pxa.Produto)
             .ToListAsync();
 
@@ -34,7 +34,7 @@ namespace GerenciamentoEstoque.Controllers
         [HttpPost]
         public async Task<ActionResult> PostProdutoXArmazem(ProdutoXArmazem produtoXArmazem)
         {
-            var armazem = await _context.Armazens.FindAsync(produtoXArmazem.IdArmazem);
+            var armazem = await _context.Armazens.FindAsync(produtoXArmazem.ArmazemUniqueId);
             if (armazem == null)
             {
                 return NotFound("Armazem nao encontrado.");
@@ -42,7 +42,7 @@ namespace GerenciamentoEstoque.Controllers
             _context.ProdutoXArmazens.Add(produtoXArmazem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProdutoXArmazens), new {armazemId = produtoXArmazem.IdArmazem}, produtoXArmazem);
+            return CreatedAtAction(nameof(GetProdutoXArmazens), new {armazemId = produtoXArmazem.ArmazemUniqueId}, produtoXArmazem);
         }
 
         [HttpDelete("{id}")]
