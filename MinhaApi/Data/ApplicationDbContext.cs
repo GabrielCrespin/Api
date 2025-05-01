@@ -21,12 +21,12 @@ namespace GerenciamentoEstoque.Data
 
             modelBuilder.Entity<ProdutoXArmazem>()
                 .HasOne(pxa => pxa.Produto)
-                .WithMany(p => p.ProdutosXArmazens)
+                .WithMany()
                 .HasForeignKey(pxa => pxa.IdProduto);
 
             modelBuilder.Entity<ProdutoXArmazem>()
                 .HasOne(pxa => pxa.Armazem)
-                .WithMany(a => a.ProdutosXArmazens)
+                .WithMany()
                 .HasForeignKey(pxa => pxa.ArmazemUniqueId);
         }
 

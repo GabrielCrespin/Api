@@ -13,6 +13,6 @@ namespace GerenciamentoEstoque.Models
         [Required]
         public string Grupo { get; set; }
 
-        public ICollection<ProdutoXArmazem> ProdutosXArmazens { get; set; }
+        
     }
 }

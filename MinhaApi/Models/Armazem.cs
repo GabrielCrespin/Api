@@ -11,6 +11,6 @@ namespace GerenciamentoEstoque.Models
         [Required]
         public string Descricao { get; set; }
 
-        public ICollection<ProdutoXArmazem> ProdutosXArmazens { get; set; }
+        
     }
 }

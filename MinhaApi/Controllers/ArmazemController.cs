@@ -59,10 +59,10 @@ namespace GerenciamentoEstoque.Controllers
             var armazem = await _context.Armazens.FindAsync(id);
             if (armazem == null)
             {
-                NotFound();
+               return NotFound("ID não encontrado");
             }
             _context.Armazens.Remove(armazem);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
