@@ -2,6 +2,7 @@ using GerenciamentoEstoque.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using GerenciamentoEstoque.Data;
+using GerenciamentoEstoque.Dto;
 
 namespace GerenciamentoEstoque.Controllers
 {
@@ -26,7 +27,7 @@ namespace GerenciamentoEstoque.Controllers
         public async Task<ActionResult<Armazem>> Get(int id)
         {
             var armazem = await _context.Armazens.FindAsync(id);
-            if(armazem == null)
+            if (armazem == null)
             {
                 return NotFound();
             }
@@ -34,22 +35,37 @@ namespace GerenciamentoEstoque.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Armazem>> Post(Armazem armazem)
+        public async Task<ActionResult<Armazem>> Post(ArmazemDto armazemDTO)
         {
-            _context.Add(armazem);
+            var armazem = new Armazem
+            {
+                Codigo = armazemDTO.Codigo,
+                Descricao = armazemDTO.Descricao
+            };
+
+            _context.Armazens.Add(armazem);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(Get), new{UniqueiD = armazem.UniqueId}, armazem);
+
+            return CreatedAtAction(nameof(Get), new { UniqueId = armazem.UniqueId }, armazem);
         }
 
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Armazem armazem)
+        public async Task<IActionResult> Put(int id, ArmazemDto armazemDTO)
         {
-            if (id != armazem.UniqueId)
+            var armazem = await _context.Armazens.FindAsync(id);
+
+            if (armazem == null)
             {
-                return BadRequest("ID da url nao bate com o ID do produto enviado");
+                return NotFound("Armazém não encontrado");
             }
+
+            armazem.Codigo = armazemDTO.Codigo;
+            armazem.Descricao = armazemDTO.Descricao;
+
             _context.Entry(armazem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
@@ -59,7 +75,7 @@ namespace GerenciamentoEstoque.Controllers
             var armazem = await _context.Armazens.FindAsync(id);
             if (armazem == null)
             {
-               return NotFound("ID não encontrado");
+                return NotFound("ID não encontrado");
             }
             _context.Armazens.Remove(armazem);
             await _context.SaveChangesAsync();

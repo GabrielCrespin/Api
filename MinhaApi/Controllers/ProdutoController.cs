@@ -2,6 +2,7 @@ using GerenciamentoEstoque.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GerenciamentoEstoque.Data;
+using GerenciamentoEstoque.Dto;
 
 namespace GerenciamentoEstoque.Controllers
 {
@@ -34,11 +35,11 @@ namespace GerenciamentoEstoque.Controllers
             return produto;
         }
 
-        [HttpGet("{codigo}")]
+        [HttpGet("por-codigo/{codigo}")]
         public async Task<ActionResult<Produto>> GetProdutoPorCodigo(string codigo)
         {
-            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Codigo == codigo);
-            if(produto == null)
+            var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Codigo.ToLower().Trim() == codigo.ToLower().Trim());
+            if (produto == null)
             {
                 return NotFound();
             }
@@ -46,20 +47,36 @@ namespace GerenciamentoEstoque.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Produto>> PostProduto(Produto produto)
+        public async Task<ActionResult<Produto>> PostProduto(ProdutoDto produtoDTO)
         {
+            var produto = new Produto
+            {
+                Codigo = produtoDTO.Codigo,
+                Descricao = produtoDTO.Descricao,
+                Grupo = produtoDTO.Grupo
+            };
+
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetProdutos), new{Id = produto.Id}, produto);
+
+            return CreatedAtAction(nameof(GetProdutos), new { Id = produto.Id }, produto);
         }
 
+
         [HttpPut]
-        public async Task<IActionResult> Put(int id,Produto produto)
+        public async Task<IActionResult> Put(int id, ProdutoDto produtoDto)
         {
-            if(id != produto.Id)
+            var produto = await _context.Produtos.FindAsync(id);
+
+            if (produto == null)
             {
-                return BadRequest("ID da url nao bate com o ID do produto enviado");
+                return NotFound("ID da url nao bate com o ID do produto enviado");
             }
+
+            produto.Codigo = produtoDto.Codigo;
+            produto.Descricao = produtoDto.Descricao;
+            produto.Grupo = produtoDto.Grupo;
+
             _context.Entry(produto).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return NoContent();
@@ -69,7 +86,7 @@ namespace GerenciamentoEstoque.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            if(produto == null)
+            if (produto == null)
             {
                 return NotFound();
             }
