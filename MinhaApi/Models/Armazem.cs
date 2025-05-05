@@ -10,7 +10,5 @@ namespace GerenciamentoEstoque.Models
         public string Codigo { get; set; }
         [Required]
         public string Descricao { get; set; }
-
-        
     }
 }
